@@ -1,5 +1,5 @@
 """
-Plots Learning curves for Decision Trees
+Plots Learning curves for kNN
 """
 
 import sys
@@ -8,7 +8,7 @@ import pylab as pl
 from sklearn.utils import shuffle
 from sklearn.metrics import mean_squared_error
 from sklearn import datasets
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.neighbors import KNeighborsRegressor
 
 
 boston = datasets.load_boston()
@@ -22,14 +22,14 @@ train_err = zeros(len(sizes))
 test_err = zeros(len(sizes))
 
 for i, s in enumerate(sizes):
-    regressor = DecisionTreeRegressor(max_depth=2)
-    regressor.fit(X_train[:s], y_train[:s])
+	regressor = KNeighborsRegressor(n_neighbors=2)
+	regressor.fit(X_train[:s], y_train[:s])
 
-    train_err[i] = mean_squared_error(y_train[:s], regressor.predict(X_train[:s]))
-    test_err[i] = mean_squared_error(y_test, regressor.predict(X_test))
+	train_err[i] = mean_squared_error(y_train[:s], regressor.predict(X_train[:s]))
+	test_err[i] = mean_squared_error(y_test, regressor.predict(X_test))
 
 pl.figure()
-pl.title('Decision Trees: Performance vs Training Size')
+pl.title('2-NN: Performance vs Training Size')
 pl.plot(sizes, test_err, lw=2, label = 'test error')
 pl.plot(sizes, train_err, lw=2, label = 'training error')
 pl.legend()

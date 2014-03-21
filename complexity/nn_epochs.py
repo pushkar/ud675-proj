@@ -1,5 +1,5 @@
 """
-Plots Learning curves for Neural Networks
+Plots Performance of Neural Networks with number of epochs
 """
 
 import sys
@@ -19,22 +19,21 @@ offset = int(0.7*len(X))
 X_train, y_train = X[:offset], y[:offset]
 X_test, y_test = X[offset:], y[offset:]
 
-sizes = linspace(10, len(X_train), 10)
-train_err = zeros(len(sizes))
-test_err = zeros(len(sizes))
+max_epochs = range(0, 2000)
 
-net = buildNetwork(13, 9, 7, 5, 1)
+train_err = zeros(len(max_epochs))
+test_err = zeros(len(max_epochs))
+
+net = buildNetwork(13, 5, 1)
 ds = SupervisedDataSet(13, 1)
 
-for i,s in enumerate(sizes):
-    ds.clear()
-    for j in range(1, int(s)):
-        ds.addSample(X_train[j], y_train[j])
+for i in range(1, len(X_train)):
+    ds.addSample(X_train[i], y_train[i])
 
-    trainer = BackpropTrainer(net, ds)
+trainer = BackpropTrainer(net, ds)
 
-    for e in range(0, 50):
-        train_err[i] = trainer.train()
+for i in max_epochs:
+    train_err[i] = trainer.train()
 
     y = zeros(len(X_test))
     for j in range(0, len(X_test)):
@@ -42,12 +41,11 @@ for i,s in enumerate(sizes):
 
     test_err[i] = mean_squared_error(y, y_test)
 
-
 pl.figure()
-pl.title('Neural Networks: Performance vs Training Size')
-pl.plot(sizes, test_err, lw=2, label = 'test error')
-pl.plot(sizes, train_err, lw=2, label = 'training error')
+pl.title('Neural Networks: Performance vs Num of Epochs')
+pl.plot(max_epochs, test_err, lw=2, label = 'test error')
+pl.plot(max_epochs, train_err, lw=2, label = 'training error')
 pl.legend()
-pl.xlabel('Training Size')
+pl.xlabel('Number of Epochs')
 pl.ylabel('RMS Error')
 pl.show()
