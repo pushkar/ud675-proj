@@ -31,6 +31,7 @@ for i, d in enumerate(max_depth):
 
     train_err[i] = mean_squared_error(y_train, regressor.predict(X_train))
     crossval_err[i] = mean_squared_error(y_test, regressor.predict(X_test))
+    print regressor.predict([11.95, 0.00, 18.100, 0, 0.6590, 5.6090, 90.00, 1.385, 24, 680.0, 20.20, 332.09, 12.13])
 
 pl.figure()
 pl.title('Decision Trees: Performance vs Max Depth')
