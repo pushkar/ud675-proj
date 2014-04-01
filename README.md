@@ -3,6 +3,18 @@ ud675-proj
 
 Project for Udacity ud675 course
 
+Installation
+------------
+
+You will need Python version 2.7.5 or up to get started. To install sci-kit follow [sci-kit Installation Docs][3]
+
+
+Files
+-----
+* scikit-example.py - Start here. This shows you how to use the scikit-learn library to learn a decision tree model.
+* complexity/ - Model complexity experiments for DT, NN, kNN, SVM and Boosting. For each algorithm, we change various complexity parameters and test algorithm performance against a test set.
+* learning_curves/ - Learning curves for DT, NN, kNN, SVM and Boosting. For each algorithm, we observe the performance when we change the input sample size.
+
 Contributing
 ------------
 
@@ -13,16 +25,6 @@ Contributing
 5. Open a [Pull Request][1]
 6. Enjoy a refreshing Diet Coke and wait 
 
-Installation
-------------
-
-You will need Python version 2.7.5 or up to get started. To install sci-kit follow [sci-kit Installation Docs][3]
-
-
-Files
------
-* complexity/ - Model complexity experiments for DT, NN, kNN, SVM and Boosting. For each algorithm, we change various complexity parameters and test algorithm performance against a test set.
-* learning_curves/ - Learning curves for DT, NN, kNN, SVM and Boosting. For each algorithm, we observe the performance when we change the input sample size.
 
 Getting Started
 ---------------
